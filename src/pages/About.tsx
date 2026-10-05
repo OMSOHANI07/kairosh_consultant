@@ -54,7 +54,11 @@ export default function About() {
       <section className="py-20">
         <div className="container-page">
           <SectionHeading eyebrow="Team" title={team.heading} />
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div
+            className={`mx-auto grid gap-6 ${
+              team.members.length === 1 ? 'max-w-sm' : team.members.length === 2 ? 'max-w-3xl sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'
+            }`}
+          >
             {team.members.map((m, i) => (
               <div key={i} className="overflow-hidden rounded-3xl bg-cream">
                 <Photo src={m.photoUrl} alt={m.name} className="aspect-square w-full" />

@@ -34,8 +34,8 @@ export const home = {
 
   whoWeAre: {
     eyebrow: 'Who We Are',
-    title: 'A small team obsessed with your results',
-    text: 'PLACEHOLDER: We combine modern web development with practical AI automation to help small and growing businesses compete with the big players: faster sites, smarter workflows and more time back in your week.',
+    title: 'Engineers and managers on a mission for SMEs',
+    text: 'We are a group of engineering and management professionals who automate workflows for small and medium businesses and build websites at a very affordable price, so you get faster sites, smarter workflows and more time back in your week.',
     imageMain: '/images/team-laptops.webp',
     imageMainAlt: 'Team collaborating around laptops',
     imageSmall: '/images/portrait.webp',
