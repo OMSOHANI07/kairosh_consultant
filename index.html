@@ -39,6 +39,19 @@
       }
     </script>
 
+    <!-- Decide before first paint whether the animated-logo intro plays (once per session) -->
+    <script>
+      try {
+        if (
+          !sessionStorage.getItem('kc_intro') &&
+          !location.pathname.startsWith('/admin') &&
+          !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+          !/bot|crawl|spider|slurp|facebookexternalhit|whatsapp|preview/i.test(navigator.userAgent)
+        )
+          document.documentElement.dataset.intro = 'on'
+      } catch (e) {}
+    </script>
+
     <!-- GitHub Pages SPA redirect (pairs with public/404.html): restores deep links like /admin/leads -->
     <script>
       (function (l) {

@@ -85,7 +85,7 @@ export function Navbar() {
       <div className="border-b border-white/10 bg-brand-950/95 backdrop-blur supports-[backdrop-filter]:bg-brand-950/85">
         <nav className="container-page flex h-16 items-center justify-between" aria-label="Main">
           <Link to="/">
-            <Logo light />
+            <Logo light animated />
           </Link>
 
           {/* Desktop */}

@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { getConsent, initTracking, trackPageView } from '../lib/tracking'
 import { ConsentBanner } from './ConsentBanner'
 import { Footer } from './Footer'
+import { IntroSplash } from './IntroSplash'
 import { LoginModalHost } from './LoginModal'
 import { Navbar } from './Navbar'
 
@@ -33,6 +34,7 @@ export function PublicLayout() {
       <Footer onCookieSettings={() => setShowConsent(true)} />
       {showConsent && <ConsentBanner onChoice={() => setShowConsent(false)} />}
       <LoginModalHost />
+      <IntroSplash />
     </div>
   )
 }
