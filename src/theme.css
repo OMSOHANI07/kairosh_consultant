@@ -1,0 +1,30 @@
+/* =============================================================================
+   Colour theme: change these values to re-brand the whole site.
+   `brand` is the main colour (buttons, links, highlights) and `accent` is the
+   secondary highlight. Tailwind classes like bg-brand-600 or text-accent-500
+   are generated from these.
+   ============================================================================= */
+
+@theme {
+  --color-brand-50: #eefbf8;
+  --color-brand-100: #d5f4ec;
+  --color-brand-200: #aee8da;
+  --color-brand-300: #78d5c3;
+  --color-brand-400: #42baa7;
+  --color-brand-500: #219f8e;
+  --color-brand-600: #157f73;
+  --color-brand-700: #13665e;
+  --color-brand-800: #13514c;
+  --color-brand-900: #12433f;
+  --color-brand-950: #062725;
+
+  --color-accent-300: #fcd38a;
+  --color-accent-400: #fab84f;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+
+  --color-ink: #0f1d1c;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+}
