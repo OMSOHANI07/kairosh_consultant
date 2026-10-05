@@ -8,41 +8,23 @@ import { useCustomer } from '../lib/customer'
 import { PillLink } from './CtaLink'
 import { Logo } from './Logo'
 import { ScrollProgressBar } from './ScrollEffects'
-import { GithubIcon, InstagramIcon, LinkedinIcon, XIcon } from './SocialIcons'
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
   `rounded-md px-3 py-2 text-sm font-medium transition-colors ${
     isActive ? 'text-accent-400' : 'text-white/85 hover:text-white'
   }`
 
-const socials = [
-  { href: site.social.linkedin, label: 'LinkedIn', Icon: LinkedinIcon },
-  { href: site.social.x, label: 'X (Twitter)', Icon: XIcon },
-  { href: site.social.instagram, label: 'Instagram', Icon: InstagramIcon },
-  { href: site.social.github, label: 'GitHub', Icon: GithubIcon },
-].filter((s) => s.href)
-
 /** Thin lime strip above the navbar. */
 function TopBar() {
   return (
     <div className="hidden bg-accent-400 text-xs font-medium text-ink md:block">
       <div className="container-page flex h-9 items-center justify-between">
-        <div className="flex items-center gap-6">
-          <span className="inline-flex items-center gap-1.5">
-            <CheckCircle2 className="h-4 w-4" aria-hidden="true" /> {home.topBar.tagline}
-          </span>
-          <a href={`mailto:${site.email}`} className="inline-flex items-center gap-1.5 hover:underline">
-            <Mail className="h-4 w-4" aria-hidden="true" /> {site.email}
-          </a>
-        </div>
-        <div className="flex items-center gap-3">
-          <span>Follow Us —</span>
-          {socials.map(({ href, label, Icon }) => (
-            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} className="hover:opacity-70">
-              <Icon className="h-3.5 w-3.5" />
-            </a>
-          ))}
-        </div>
+        <span className="inline-flex items-center gap-1.5">
+          <CheckCircle2 className="h-4 w-4" aria-hidden="true" /> {home.topBar.tagline}
+        </span>
+        <a href={`mailto:${site.email}`} className="inline-flex items-center gap-1.5 hover:underline">
+          <Mail className="h-4 w-4" aria-hidden="true" /> {site.email}
+        </a>
       </div>
     </div>
   )

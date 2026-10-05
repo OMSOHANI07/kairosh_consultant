@@ -4,14 +4,6 @@ import { site } from '../config/site'
 import { services } from '../content/services'
 import { PillLink } from './CtaLink'
 import { Logo } from './Logo'
-import { GithubIcon, InstagramIcon, LinkedinIcon, XIcon } from './SocialIcons'
-
-const socials = [
-  { href: site.social.linkedin, label: 'LinkedIn', Icon: LinkedinIcon },
-  { href: site.social.instagram, label: 'Instagram', Icon: InstagramIcon },
-  { href: site.social.x, label: 'X (Twitter)', Icon: XIcon },
-  { href: site.social.github, label: 'GitHub', Icon: GithubIcon },
-].filter((s) => s.href)
 
 export function Footer({ onCookieSettings }: { onCookieSettings: () => void }) {
   return (
@@ -20,20 +12,6 @@ export function Footer({ onCookieSettings }: { onCookieSettings: () => void }) {
         <div className="lg:col-span-2">
           <Logo light />
           <p className="mt-4 max-w-sm text-sm text-brand-200">{site.tagline}.</p>
-          <div className="mt-5 flex gap-2">
-            {socials.map(({ href, label, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white hover:bg-accent-400 hover:text-ink"
-              >
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
           <PillLink to="/contact" className="mt-6" track="footer">
             Book a Free Consultation
           </PillLink>

@@ -1,5 +1,5 @@
 // =============================================================================
-// Site-wide settings. Change the brand, contact details, social links and
+// Site-wide settings. Change the brand, contact details and
 // feature flags here. Colours live in src/theme.css.
 // =============================================================================
 
@@ -10,12 +10,6 @@ export const site = {
   url: 'https://kairoshconsultants.in',
   email: 'kairosh.consultants@gmail.com',
   location: 'India',
-  social: {
-    linkedin: 'https://www.linkedin.com/', // PLACEHOLDER
-    instagram: 'https://www.instagram.com/', // PLACEHOLDER
-    x: 'https://x.com/', // PLACEHOLDER
-    github: 'https://github.com/OMSOHANI07',
-  },
 } as const
 
 export const features = {
