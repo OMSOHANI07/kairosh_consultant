@@ -1,4 +1,4 @@
-import { BadgeCheck, Bot, CheckCircle2, Clock, Handshake, IndianRupee, LifeBuoy, MonitorSmartphone, Phone, Star, Target } from 'lucide-react'
+import { BadgeCheck, Bot, CheckCircle2, Clock, Handshake, IndianRupee, LifeBuoy, Mail, MonitorSmartphone, Star, Target } from 'lucide-react'
 import { ContactForm } from '../components/ContactForm'
 import { Chip, SectionHeading } from '../components/CtaBanner'
 import { PillLink } from '../components/CtaLink'
@@ -86,13 +86,13 @@ function Hero() {
             <PillLink to="/contact" track="home-hero" className="py-2 pl-6 text-base">
               {hero.primaryCta}
             </PillLink>
-            <a href={`tel:${site.phone.replace(/\s/g, '')}`} className="group inline-flex items-center gap-3 text-white">
+            <a href={`mailto:${site.email}`} className="group inline-flex items-center gap-3 text-white">
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-400 text-ink transition group-hover:bg-accent-300">
-                <Phone className="h-5 w-5" aria-hidden="true" />
+                <Mail className="h-5 w-5" aria-hidden="true" />
               </span>
               <span className="leading-tight">
-                <span className="block text-xs tracking-wide text-brand-200 uppercase">Call us</span>
-                <span className="font-semibold">{site.phone}</span>
+                <span className="block text-xs tracking-wide text-brand-200 uppercase">Email us</span>
+                <span className="font-semibold break-all">{site.email}</span>
               </span>
             </a>
           </div>

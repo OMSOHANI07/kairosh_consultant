@@ -9,12 +9,15 @@ import { KairoshMark } from './KairoshMark'
 const SHOW_MS = 2900 // the logo has finished building by now
 const FADE_MS = 500
 
-function finish() {
+function markSeen() {
   try {
     sessionStorage.setItem('kc_intro', '1')
   } catch {
     /* storage unavailable */
   }
+}
+
+function finish() {
   delete document.documentElement.dataset.intro
 }
 
@@ -25,6 +28,7 @@ export function IntroSplash() {
 
   useEffect(() => {
     if (phase === 'play') {
+      markSeen() // even if the visitor leaves early, never replay it this session
       const id = window.setTimeout(() => setPhase('fade'), SHOW_MS)
       const skip = () => setPhase('fade')
       window.addEventListener('keydown', skip, { once: true })

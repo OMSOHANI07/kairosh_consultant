@@ -37,7 +37,7 @@ export default function Privacy() {
           <li>Device type, browser, operating system, screen size and language.</li>
           <li>Approximate country and city, derived from your IP address by a third-party geolocation service (we do not store your IP address).</li>
         </ul>
-        <p><strong>Information you give us:</strong> your name, email, phone number and message when you submit the contact form, and your email or mobile number if you choose to sign in.</p>
+        <p><strong>Information you give us:</strong> your name, email and message when you submit the contact form, and your email or mobile number if you choose to sign in.</p>
       </Section>
 
       <Section title="2. Why we collect it">

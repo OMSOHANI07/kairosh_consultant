@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { Mail, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { site } from '../config/site'
 import { services } from '../content/services'
@@ -56,11 +56,6 @@ export function Footer({ onCookieSettings }: { onCookieSettings: () => void }) {
             <li>
               <a className="inline-flex items-center gap-2 hover:text-accent-400" href={`mailto:${site.email}`}>
                 <Mail className="h-4 w-4 text-accent-400" /> {site.email}
-              </a>
-            </li>
-            <li>
-              <a className="inline-flex items-center gap-2 hover:text-accent-400" href={`tel:${site.phone.replace(/\s/g, '')}`}>
-                <Phone className="h-4 w-4 text-accent-400" /> {site.phone}
               </a>
             </li>
             <li className="inline-flex items-center gap-2">

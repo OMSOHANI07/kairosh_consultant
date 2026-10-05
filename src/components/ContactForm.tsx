@@ -20,7 +20,6 @@ export function ContactForm({ source }: { source: string }) {
     const lead = {
       name: String(form.get('name') ?? '').trim(),
       email: String(form.get('email') ?? '').trim(),
-      phone: String(form.get('phone') ?? '').trim() || null,
       message: String(form.get('message') ?? '').trim(),
       visitor_id: getVisitorId(),
     }
@@ -60,12 +59,6 @@ export function ContactForm({ source }: { source: string }) {
       <div>
         <label htmlFor={`${source}-email`} className="label">Email</label>
         <input id={`${source}-email`} name="email" type="email" required maxLength={320} autoComplete="email" className="input" />
-      </div>
-      <div className="sm:col-span-2">
-        <label htmlFor={`${source}-phone`} className="label">
-          Phone <span className="font-normal text-slate-500">(optional)</span>
-        </label>
-        <input id={`${source}-phone`} name="phone" type="tel" maxLength={30} autoComplete="tel" className="input" />
       </div>
       <div className="sm:col-span-2">
         <label htmlFor={`${source}-message`} className="label">How can we help?</label>

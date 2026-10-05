@@ -8,8 +8,7 @@ export const site = {
   shortName: 'Kairosh',
   tagline: 'Websites and AI automation for growing businesses',
   url: 'https://kairoshconsultants.in',
-  email: 'hello@kairoshconsultants.in', // PLACEHOLDER: your public contact email
-  phone: '+91 00000 00000', // PLACEHOLDER: your public phone number
+  email: 'kairosh.consultants@gmail.com',
   location: 'India',
   social: {
     linkedin: 'https://www.linkedin.com/', // PLACEHOLDER

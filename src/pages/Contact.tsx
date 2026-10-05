@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { Mail, MapPin } from 'lucide-react'
 import { ContactForm } from '../components/ContactForm'
 import { PageHero } from '../components/CtaBanner'
 import { site } from '../config/site'
@@ -6,8 +6,7 @@ import { usePageMeta } from '../hooks/usePageMeta'
 
 const items = [
   { Icon: Mail, label: 'Email us', value: site.email, href: `mailto:${site.email}` },
-  { Icon: Phone, label: 'Call us', value: site.phone, href: `tel:${site.phone.replace(/\s/g, '')}` },
-  { Icon: MapPin, label: 'Based in', value: site.location },
+  { Icon: MapPin, label: 'Based in', value: site.location, href: undefined },
 ]
 
 export default function Contact() {
