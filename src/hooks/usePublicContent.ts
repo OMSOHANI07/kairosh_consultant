@@ -40,3 +40,17 @@ export function useTestimonials(opts: { category?: Category; featured?: boolean 
   ]
   return useSelect<Testimonial>('testimonials', filters.filter(Boolean).join('&'))
 }
+
+/** Live numbers for the stat tiles: average testimonial rating and project count. */
+export function useSiteStats() {
+  const reviews = useSelect<{ rating: number }>('testimonials', 'select=rating&is_active=is.true')
+  const projects = useSelect<{ id: string }>('portfolio_links', 'select=id&is_active=is.true')
+  const count = reviews.data.length
+  const avg = count ? reviews.data.reduce((s, r) => s + r.rating, 0) / count : 0
+  return {
+    loading: reviews.loading || projects.loading,
+    reviewCount: count,
+    avgRating: Math.round(avg * 10) / 10,
+    projectCount: projects.data.length,
+  }
+}

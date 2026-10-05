@@ -1,39 +1,57 @@
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { ContactForm } from '../components/ContactForm'
+import { PageHero } from '../components/CtaBanner'
 import { site } from '../config/site'
 import { usePageMeta } from '../hooks/usePageMeta'
+
+const items = [
+  { Icon: Mail, label: 'Email us', value: site.email, href: `mailto:${site.email}` },
+  { Icon: Phone, label: 'Call us', value: site.phone, href: `tel:${site.phone.replace(/\s/g, '')}` },
+  { Icon: MapPin, label: 'Based in', value: site.location },
+]
 
 export default function Contact() {
   usePageMeta({ path: '/contact' })
 
   return (
-    <section className="bg-gradient-to-b from-brand-50 to-white">
-      <div className="container-page grid gap-10 py-16 sm:py-24 lg:grid-cols-5">
-        <div className="lg:col-span-2">
-          <p className="eyebrow">Contact</p>
-          <h1 className="mt-3 text-4xl sm:text-5xl">Book a free consultation</h1>
-          <p className="mt-5 text-lg text-slate-600">
-            Tell us a little about your business and what you’d like to build or automate. We’ll get back to you within
-            one business day.
-          </p>
-          <ul className="mt-8 space-y-4 text-slate-700">
-            <li className="flex items-center gap-3">
-              <Mail className="h-5 w-5 text-brand-600" aria-hidden="true" />
-              <a href={`mailto:${site.email}`} className="hover:text-brand-700">{site.email}</a>
-            </li>
-            <li className="flex items-center gap-3">
-              <Phone className="h-5 w-5 text-brand-600" aria-hidden="true" />
-              <a href={`tel:${site.phone.replace(/\s/g, '')}`} className="hover:text-brand-700">{site.phone}</a>
-            </li>
-            <li className="flex items-center gap-3">
-              <MapPin className="h-5 w-5 text-brand-600" aria-hidden="true" /> {site.location}
-            </li>
+    <>
+      <PageHero
+        eyebrow="Contact"
+        title="Book a free consultation"
+        text="Tell us a little about your business and what you’d like to build or automate. We’ll get back to you within one business day."
+        image="/images/meeting.webp"
+      />
+      <section className="bg-cream py-20">
+        <div className="container-page grid gap-10 lg:grid-cols-5">
+          <ul className="space-y-4 lg:col-span-2">
+            {items.map(({ Icon, label, value, href }) => {
+              const body = (
+                <>
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-400 text-ink">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span>
+                    <span className="block text-xs font-semibold tracking-wide text-slate-500 uppercase">{label}</span>
+                    <span className="font-semibold text-ink">{value}</span>
+                  </span>
+                </>
+              )
+              return (
+                <li key={label}>
+                  {href ? (
+                    <a href={href} className="flex items-center gap-4 rounded-3xl bg-white p-5 hover:shadow-md">{body}</a>
+                  ) : (
+                    <div className="flex items-center gap-4 rounded-3xl bg-white p-5">{body}</div>
+                  )}
+                </li>
+              )
+            })}
           </ul>
+          <div className="lg:col-span-3">
+            <ContactForm source="contact" />
+          </div>
         </div>
-        <div className="lg:col-span-3">
-          <ContactForm source="contact" />
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }

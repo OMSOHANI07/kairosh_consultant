@@ -10,7 +10,7 @@ export function Stars({ rating }: { rating: number }) {
       {Array.from({ length: 5 }, (_, i) => (
         <Star
           key={i}
-          className={`h-4 w-4 ${i < rating ? 'fill-accent-400 text-accent-400' : 'text-slate-300'}`}
+          className={`h-4 w-4 ${i < rating ? 'fill-accent-500 text-accent-500' : 'text-slate-300'}`}
           aria-hidden="true"
         />
       ))}
@@ -23,7 +23,7 @@ function Avatar({ t }: { t: Testimonial }) {
     return <img src={t.photo_url} alt="" loading="lazy" width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
   }
   return (
-    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-sm font-semibold text-brand-700">
+    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-900 text-sm font-semibold text-accent-400">
       {t.client_name.charAt(0)}
     </span>
   )
@@ -31,9 +31,9 @@ function Avatar({ t }: { t: Testimonial }) {
 
 export function TestimonialCard({ t }: { t: Testimonial }) {
   return (
-    <figure className="card flex h-full flex-col p-6">
+    <figure className="flex h-full flex-col rounded-3xl bg-white p-7 shadow-sm ring-1 ring-slate-200/70">
       <Stars rating={t.rating} />
-      <blockquote className="mt-3 flex-1 text-slate-700">“{t.quote}”</blockquote>
+      <blockquote className="mt-4 flex-1 text-lg text-ink">“{t.quote}”</blockquote>
       <figcaption className="mt-5 flex items-center gap-3">
         <Avatar t={t} />
         <div>
@@ -102,7 +102,7 @@ export function TestimonialCarousel() {
       </div>
       {count > 1 && (
         <div className="mt-5 flex items-center justify-center gap-4">
-          <button type="button" className="btn-secondary h-10 w-10 p-0" onClick={() => go(-1)} aria-label="Previous testimonial">
+          <button type="button" className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-900 text-accent-400 hover:bg-brand-800" onClick={() => go(-1)} aria-label="Previous testimonial">
             <ChevronLeft className="h-5 w-5" />
           </button>
           <div className="flex gap-1">
@@ -115,11 +115,11 @@ export function TestimonialCarousel() {
                 aria-current={i === index}
                 className="flex h-6 w-6 items-center justify-center"
               >
-                <span className={`block h-2 rounded-full transition-all ${i === index ? 'w-5 bg-brand-600' : 'w-2 bg-slate-300'}`} />
+                <span className={`block h-2 rounded-full transition-all ${i === index ? 'w-6 bg-brand-900' : 'w-2 bg-slate-300'}`} />
               </button>
             ))}
           </div>
-          <button type="button" className="btn-secondary h-10 w-10 p-0" onClick={() => go(1)} aria-label="Next testimonial">
+          <button type="button" className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-900 text-accent-400 hover:bg-brand-800" onClick={() => go(1)} aria-label="Next testimonial">
             <ChevronRight className="h-5 w-5" />
           </button>
         </div>

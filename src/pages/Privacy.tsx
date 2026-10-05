@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { PageHero } from '../components/CtaBanner'
 import { site } from '../config/site'
 import { usePageMeta } from '../hooks/usePageMeta'
 
@@ -17,10 +18,9 @@ export default function Privacy() {
   usePageMeta({ path: '/privacy' })
 
   return (
-    <article className="container-page max-w-3xl py-16 sm:py-24">
-      <p className="eyebrow">Legal</p>
-      <h1 className="mt-3 text-4xl">Privacy Policy</h1>
-      <p className="mt-3 text-sm text-slate-500">Last updated: {LAST_UPDATED}</p>
+    <>
+    <PageHero eyebrow="Legal" title="Privacy Policy" text={`Last updated: ${LAST_UPDATED}`} />
+    <article className="container-page max-w-3xl py-16 sm:py-20">
       <p className="mt-6 text-slate-600">
         This policy explains what personal data {site.name} (“we”, “us”) collects through {site.url}, why we collect it,
         and the choices you have. We process personal data in line with India’s Digital Personal Data Protection Act,
@@ -90,5 +90,6 @@ export default function Privacy() {
         <p>We may update this policy. The “last updated” date above shows when it was last changed.</p>
       </Section>
     </article>
+    </>
   )
 }

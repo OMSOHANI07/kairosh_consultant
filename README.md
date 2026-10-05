@@ -129,8 +129,9 @@ DNS changes usually take from a few minutes up to a few hours. Check with `dig k
 | Edit page titles / descriptions    | `src/content/seo.json`                                             |
 | Add portfolio links / testimonials | `/admin` → Portfolio / Testimonials (live, no deploy needed)       |
 | Replace the logo                   | `src/components/Logo.tsx`, `public/favicon.svg`, `public/og-image.png` |
+| Replace photos                     | `public/images/*.webp` (free [Unsplash](https://unsplash.com/license) photos; paths set in `src/content/home.ts`) |
 
-Sample portfolio links and testimonials are marked **"Sample"**: replace or delete them from `/admin` before launch. Search for `PLACEHOLDER` to find all other placeholder text.
+Sample portfolio links and testimonials are marked **"Sample"**: replace or delete them from `/admin` before launch. The home page's rating badge, average rating and project count are calculated live from these tables, so they become real once your own testimonials and projects are in. Search for `PLACEHOLDER` to find all other placeholder text.
 
 ## How tracking and consent work (DPDP Act)
 
@@ -156,7 +157,7 @@ Sample portfolio links and testimonials are marked **"Sample"**: replace or dele
 ## Verified locally
 
 - `npm run build` type-checks cleanly. Public JS is ~103 KB gzipped; admin, charts and the auth SDK are separate lazy chunks.
-- Lighthouse (mobile, production build): **100 / 100 / 100 / 100** (performance / accessibility / best practices / SEO) on `/` and `/services/ai`.
+- Lighthouse (mobile, production build): performance 96–98, accessibility / best practices / SEO 100 on `/`, `/services/website`, `/about`, `/contact`.
 - RLS checked through the live Data API with an anonymous token: public reads work, inserts work, reading `events` / calling admin functions / writing portfolio is denied.
 - End-to-end in the browser: consent → visitor + session + events (with geo) → contact lead → phone fallback login linked the visitor to a customer. Admin analytics functions returned correct numbers. (Test rows were deleted afterwards.)
 - **Not yet tested:** the real email-OTP admin sign-in (needs your inbox) and the dashboard UI with live data. Do step 2, then click through `/admin`.

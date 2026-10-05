@@ -20,9 +20,9 @@ function PortfolioCard({ item }: { item: PortfolioLink }) {
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => track('portfolio_click', { id: item.id, title: item.title, url: item.url, category: item.category })}
-      className="card group flex flex-col overflow-hidden transition hover:-translate-y-0.5 hover:shadow-md"
+      className="group flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-slate-200/70 transition hover:-translate-y-1 hover:shadow-lg"
     >
-      <div className="aspect-video overflow-hidden bg-gradient-to-br from-brand-100 to-brand-50">
+      <div className="aspect-video overflow-hidden bg-gradient-to-br from-brand-900 to-brand-700">
         {item.thumbnail_url ? (
           <img
             src={item.thumbnail_url}
@@ -34,15 +34,15 @@ function PortfolioCard({ item }: { item: PortfolioLink }) {
             className="h-full w-full object-cover transition group-hover:scale-[1.02]"
           />
         ) : (
-          <div className="flex h-full items-center justify-center text-3xl font-bold text-brand-600/60">
+          <div className="flex h-full items-center justify-center text-4xl font-extrabold text-accent-400">
             {initials(item.title)}
           </div>
         )}
       </div>
-      <div className="flex flex-1 flex-col p-5">
+      <div className="flex flex-1 flex-col p-6">
         <h3 className="text-lg">{item.title}</h3>
         {item.description && <p className="mt-1 flex-1 text-sm text-slate-600">{item.description}</p>}
-        <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
+        <span className="mt-5 inline-flex items-center gap-2 self-start rounded-full bg-accent-400 px-4 py-1.5 text-sm font-semibold text-ink group-hover:bg-accent-300">
           Visit site <ExternalLink className="h-4 w-4" aria-hidden="true" />
           <span className="sr-only">(opens in a new tab)</span>
         </span>

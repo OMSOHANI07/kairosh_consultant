@@ -43,8 +43,8 @@ export function ContactForm({ source }: { source: string }) {
 
   if (status === 'sent') {
     return (
-      <div className="card flex flex-col items-center p-8 text-center" role="status">
-        <CheckCircle2 className="h-12 w-12 text-brand-600" aria-hidden="true" />
+      <div className="flex flex-col items-center rounded-3xl bg-white p-8 text-center" role="status">
+        <CheckCircle2 className="h-12 w-12 text-brand-900" aria-hidden="true" />
         <h3 className="mt-3 text-xl">Thanks, we’ve got your message!</h3>
         <p className="mt-1 text-slate-600">We usually reply within one business day.</p>
       </div>
@@ -52,7 +52,7 @@ export function ContactForm({ source }: { source: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="card grid gap-4 p-6 sm:grid-cols-2 sm:p-8" noValidate={false}>
+    <form onSubmit={onSubmit} className="grid gap-4 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200/70 sm:grid-cols-2 sm:p-8" noValidate={false}>
       <div>
         <label htmlFor={`${source}-name`} className="label">Name</label>
         <input id={`${source}-name`} name="name" required maxLength={200} autoComplete="name" className="input" />
@@ -80,7 +80,7 @@ export function ContactForm({ source }: { source: string }) {
         <p className="text-xs text-slate-500">
           By sending this form you agree to our <Link to="/privacy" className="underline">Privacy Policy</Link>.
         </p>
-        <button type="submit" className="btn-primary" disabled={status === 'sending'}>
+        <button type="submit" className="btn-pill-dark py-2.5 pr-5" disabled={status === 'sending'}>
           {status === 'sending' ? 'Sending…' : 'Send message'}
         </button>
       </div>

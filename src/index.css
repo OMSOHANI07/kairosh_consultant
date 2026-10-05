@@ -1,13 +1,22 @@
 @import 'tailwindcss';
 @import './theme.css';
 
+/* Plus Jakarta Sans (SIL Open Font License), self-hosted variable font, latin subset */
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-latin.woff2') format('woff2');
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-white font-sans text-slate-700 antialiased;
+    @apply bg-white font-sans text-slate-600 antialiased;
   }
   h1,
   h2,
@@ -21,7 +30,7 @@
 }
 
 @utility container-page {
-  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
 }
 @utility btn {
   @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
@@ -42,10 +51,27 @@
   @apply mb-1 block text-sm font-medium text-slate-700;
 }
 @utility card {
-  @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+  @apply rounded-3xl border border-slate-200/80 bg-white shadow-sm;
 }
 @utility eyebrow {
   @apply text-sm font-semibold tracking-wide text-brand-600 uppercase;
+}
+/* "✱ Our Approach" style chip above section headings */
+@utility chip {
+  @apply inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-semibold text-ink shadow-sm ring-1 ring-slate-200/70;
+}
+/* Rounded pill button with a circular arrow on the right */
+@utility btn-pill {
+  @apply inline-flex items-center gap-3 rounded-full py-1.5 pr-1.5 pl-5 text-sm font-semibold transition-colors;
+}
+@utility btn-pill-lime {
+  @apply btn-pill bg-accent-400 text-ink hover:bg-accent-300;
+}
+@utility btn-pill-dark {
+  @apply btn-pill bg-brand-900 text-white hover:bg-brand-800;
+}
+@utility btn-pill-outline {
+  @apply btn-pill bg-white text-ink ring-2 ring-accent-400 hover:bg-accent-200/40;
 }
 @utility skeleton {
   @apply animate-pulse rounded-md bg-slate-200;

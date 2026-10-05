@@ -1,6 +1,6 @@
 export function CardSkeleton() {
   return (
-    <div className="card overflow-hidden" aria-hidden="true">
+    <div className="overflow-hidden rounded-3xl bg-white ring-1 ring-slate-200/70" aria-hidden="true">
       <div className="skeleton aspect-video rounded-none" />
       <div className="space-y-3 p-5">
         <div className="skeleton h-5 w-2/3" />
@@ -13,7 +13,7 @@ export function CardSkeleton() {
 
 export function QuoteSkeleton() {
   return (
-    <div className="card space-y-3 p-6" aria-hidden="true">
+    <div className="space-y-3 rounded-3xl bg-white p-7 ring-1 ring-slate-200/70" aria-hidden="true">
       <div className="skeleton h-4 w-24" />
       <div className="skeleton h-4 w-full" />
       <div className="skeleton h-4 w-4/5" />
@@ -27,7 +27,7 @@ export function QuoteSkeleton() {
 
 export function EmptyState({ title, text }: { title: string; text?: string }) {
   return (
-    <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-6 py-10 text-center">
+    <div className="rounded-3xl border border-dashed border-slate-300 bg-white/60 px-6 py-10 text-center">
       <p className="font-medium text-ink">{title}</p>
       {text && <p className="mt-1 text-sm text-slate-500">{text}</p>}
     </div>

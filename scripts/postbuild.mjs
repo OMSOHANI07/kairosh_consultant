@@ -16,9 +16,13 @@ const template = readFileSync(join(dist, 'index.html'), 'utf8')
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;')
 
+const HERO_PRELOAD = /\s*<link rel="preload" as="image" href="\/images\/hero\.webp"[^>]*>/
+
 function render(path, { title, description }) {
   const url = SITE + (path === '/' ? '/' : path)
-  return template
+  // Only the home page shows the hero photo, so only it preloads it.
+  const base = path === '/' ? template : template.replace(HERO_PRELOAD, '')
+  return base
     .replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*/, `$1${esc(description)}`)
     .replace(/(<link rel="canonical" href=")[^"]*/, `$1${url}`)
