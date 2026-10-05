@@ -12,7 +12,7 @@ export const home = {
     highlight: 'AI-powered',
     titleAfter: 'growth',
     subtitle:
-      'We build fast, modern websites and AI automation workflows that bring in more customers and take repetitive work off your plate.',
+      'Kairosh Consultants builds fast, modern websites and AI automation workflows that bring in more customers and take repetitive work off your plate.',
     primaryCta: 'Book a Free Consultation',
     image: '/images/hero.webp',
     imageMobile: '/images/hero-mobile.webp',

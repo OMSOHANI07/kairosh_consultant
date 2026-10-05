@@ -1,26 +1,38 @@
 {
   "/": {
-    "title": "Kairosh Consultants | Website Building & AI Automation",
-    "description": "We design fast, modern websites and build AI automation workflows that save your team hours every week. Book a free consultation."
+    "title": "Kairosh Consultants | Website Building & AI Automation Agency in India",
+    "description": "Kairosh Consultants builds fast, modern websites and AI automation workflows for small and medium businesses in India at an affordable price. Book a free consultation.",
+    "h1": "Kairosh Consultants: Website Building & AI Automation",
+    "text": "Kairosh Consultants is a team of engineering and management professionals that builds modern websites and automates workflows for SMEs at a very affordable price."
   },
   "/about": {
-    "title": "About Us | Kairosh Consultants",
-    "description": "Meet the team behind Kairosh Consultants: our story, mission and the people who build your websites and automations."
+    "title": "About Kairosh Consultants | Engineers & Managers for SMEs",
+    "description": "About Kairosh Consultants: a group of engineering and management professionals, founded by Om S, automating workflows and building affordable websites for SMEs.",
+    "h1": "About Kairosh Consultants",
+    "text": "We are a group of engineering and management professionals who automate workflows for SMEs and build websites at a very affordable price. Founded by Om S."
   },
   "/services/website": {
-    "title": "Website Building | Kairosh Consultants",
-    "description": "Custom, mobile-first websites that load fast, rank well and turn visitors into customers. See our portfolio and client reviews."
+    "title": "Website Building Services | Kairosh Consultants",
+    "description": "Website building by Kairosh Consultants: custom, mobile-first websites, landing pages and online stores that load fast, rank well and win customers.",
+    "h1": "Website Building by Kairosh Consultants",
+    "text": "Business websites, landing pages, e-commerce stores, SEO and maintenance for small and growing businesses."
   },
   "/services/ai": {
-    "title": "AI Automation Workflows | Kairosh Consultants",
-    "description": "AI automation for lead handling, support, documents and reporting. See automation case studies and what clients say."
+    "title": "AI Automation Services | Kairosh Consultants",
+    "description": "AI automation by Kairosh Consultants: lead follow-up, support chatbots, document processing, reporting and tool integrations that save SMEs hours every week.",
+    "h1": "AI Automation by Kairosh Consultants",
+    "text": "AI workflows for lead capture and follow-up, customer support, document processing, reporting and integrations between the tools you already use."
   },
   "/contact": {
-    "title": "Contact | Kairosh Consultants",
-    "description": "Tell us about your project and book a free consultation for website building or AI automation."
+    "title": "Contact Kairosh Consultants | Book a Free Consultation",
+    "description": "Contact Kairosh Consultants to book a free consultation for website building or AI automation. We reply within one business day.",
+    "h1": "Contact Kairosh Consultants",
+    "text": "Book a free 30-minute consultation for website building or AI automation."
   },
   "/privacy": {
     "title": "Privacy Policy | Kairosh Consultants",
-    "description": "What data Kairosh Consultants collects, why we collect it, and your rights under India's DPDP Act, 2023."
+    "description": "What data Kairosh Consultants collects, why we collect it, and your rights under India's DPDP Act, 2023.",
+    "h1": "Kairosh Consultants Privacy Policy",
+    "text": "What data we collect, why we collect it, and your rights under India's Digital Personal Data Protection Act, 2023."
   }
 }
