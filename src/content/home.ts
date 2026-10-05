@@ -44,6 +44,9 @@ export const home = {
     skills: ['Web Design', 'React', 'SEO', 'E-commerce', 'AI Agents', 'Chatbots', 'Integrations', 'Automation'],
   },
 
+  // Words in the two sliding bands between "Who We Are" and "Our Services".
+  marquee: ['Websites', 'AI Automation', 'SEO', 'E-commerce', 'AI Agents', 'Chatbots', 'Landing Pages', 'Integrations'],
+
   servicesEyebrow: 'Our Services',
   servicesTitle: 'Two services, one goal: more growth with less busywork',
 

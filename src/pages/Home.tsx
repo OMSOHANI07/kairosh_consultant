@@ -5,6 +5,7 @@ import { PillLink } from '../components/CtaLink'
 import { AiIllustration } from '../components/illustrations/AiIllustration'
 import { WebsiteIllustration } from '../components/illustrations/WebsiteIllustration'
 import { Reveal } from '../components/Reveal'
+import { CountUp, ScrollCue, ScrollMarquee } from '../components/ScrollEffects'
 import { TestimonialCarousel } from '../components/Testimonials'
 import { site } from '../config/site'
 import { about } from '../content/about'
@@ -12,6 +13,8 @@ import { home } from '../content/home'
 import { services } from '../content/services'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { useSiteStats } from '../hooks/usePublicContent'
+import { useScrollProgress } from '../lib/scroll'
+import { useRef } from 'react'
 
 const approachIcons = { website: MonitorSmartphone, ai: Bot, consult: Handshake } as const
 const whyIcons = [Target, Clock, IndianRupee, LifeBuoy]
@@ -35,8 +38,10 @@ function Stars({ className = 'h-4 w-4' }: { className?: string }) {
 function Hero() {
   const stats = useSiteStats()
   const { hero } = home
+  const ref = useRef<HTMLElement>(null)
+  useScrollProgress(ref, 'exit')
   return (
-    <section className="relative isolate overflow-hidden bg-brand-950">
+    <section ref={ref} className="relative isolate overflow-hidden bg-brand-950">
       <picture>
         <source media="(min-width: 768px)" srcSet={hero.image} />
         <img
@@ -44,7 +49,8 @@ function Hero() {
           alt={hero.imageAlt}
           fetchPriority="high"
           decoding="async"
-          className="absolute inset-0 -z-10 h-full w-full object-cover object-[70%_center] md:left-auto md:w-[62%]"
+          className="absolute inset-0 -z-10 h-full w-full object-cover object-[70%_center] will-change-transform md:left-auto md:w-[62%]"
+          style={{ transform: 'translateY(calc(var(--p, 0) * 30%)) scale(calc(1.06 + var(--p, 0) * 0.08))' }}
         />
       </picture>
       <div
@@ -52,8 +58,11 @@ function Hero() {
         aria-hidden="true"
       />
 
-      <div className="container-page py-20 sm:py-28 lg:py-32">
-        <div className="max-w-2xl">
+      <div className="container-page py-20 sm:py-28 lg:py-36">
+        <div
+          className="max-w-2xl will-change-transform"
+          style={{ transform: 'translateY(calc(var(--p, 0) * -90px))', opacity: 'calc(1 - var(--p, 0) * 1.3)' }}
+        >
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white ring-1 ring-white/15">
             {stats.reviewCount > 0 ? (
               <>
@@ -89,6 +98,7 @@ function Hero() {
           </div>
         </div>
       </div>
+      <ScrollCue target="approach" />
     </section>
   )
 }
@@ -96,7 +106,7 @@ function Hero() {
 function Approach() {
   const { approach } = home
   return (
-    <section className="bg-cream py-20 sm:py-24">
+    <section id="approach" className="scroll-mt-24 bg-cream py-20 sm:py-24">
       <div className="container-page">
         <SectionHeading eyebrow={approach.eyebrow} title={approach.title} intro={approach.intro} align="split" />
         <div className="grid gap-6 md:grid-cols-3">
@@ -104,7 +114,7 @@ function Approach() {
             const s = cardStyles[i % cardStyles.length]
             const Icon = approachIcons[c.icon as keyof typeof approachIcons] ?? CheckCircle2
             return (
-              <Reveal as="article" key={c.title} delay={i * 140} className={`relative overflow-hidden rounded-3xl p-8 pb-24 ${s.card}`}>
+              <Reveal as="article" key={c.title} delay={i * 140} variant={(['left', 'zoom', 'right'] as const)[i % 3]} className={`relative overflow-hidden rounded-3xl p-8 pb-24 ${s.card}`}>
                 {i === 1 && <div className="pointer-events-none absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-accent-500/60" aria-hidden="true" />}
                 <Icon className={`h-10 w-10 ${s.icon}`} strokeWidth={1.5} aria-hidden="true" />
                 <h3 className={`mt-8 text-xl ${s.title}`}>{c.title}</h3>
@@ -128,22 +138,27 @@ function WhoWeAre() {
   const { whoWeAre: w } = home
   const stats = useSiteStats()
   const founder = about.team.members[0]
+  const ref = useRef<HTMLElement>(null)
+  useScrollProgress(ref)
+  const drift = (px: number) => ({ transform: `translateY(calc((var(--p, 0.5) - 0.5) * ${px}px))` })
   return (
-    <section className="py-20 sm:py-24">
+    <section ref={ref} className="py-20 sm:py-24">
       <div className="container-page grid items-center gap-12 lg:grid-cols-2">
         {/* Photo collage */}
-        <Reveal className="grid grid-cols-5 gap-4">
-          <img src={w.imageMain} alt={w.imageMainAlt} loading="lazy" decoding="async" width={900} height={560} className="col-span-5 aspect-[16/10] w-full rounded-3xl object-cover" />
-          <div className="col-span-2 flex flex-col items-center justify-center rounded-3xl bg-accent-400 p-5 text-center text-ink">
+        <Reveal variant="left" className="grid grid-cols-5 gap-4">
+          <div className="col-span-5 overflow-hidden rounded-3xl">
+            <img src={w.imageMain} alt={w.imageMainAlt} loading="lazy" decoding="async" width={900} height={560} className="aspect-[16/10] w-full scale-110 object-cover will-change-transform" style={drift(-70)} />
+          </div>
+          <div className="col-span-2 flex flex-col items-center justify-center rounded-3xl bg-accent-400 p-5 text-center text-ink will-change-transform" style={drift(-40)}>
             <CheckCircle2 className="h-9 w-9 fill-ink text-accent-400" aria-hidden="true" />
-            <p className="mt-3 text-3xl font-extrabold">{stats.loading ? '—' : `${stats.projectCount}+`}</p>
+            <p className="mt-3 text-3xl font-extrabold">{stats.loading ? '—' : <CountUp value={stats.projectCount} suffix="+" />}</p>
             <p className="mt-1 text-sm font-medium">Projects in our portfolio</p>
           </div>
-          <img src={w.imageSmall} alt={w.imageSmallAlt} loading="lazy" decoding="async" width={500} height={500} className="col-span-3 aspect-[4/3] w-full rounded-3xl object-cover" />
+          <img src={w.imageSmall} alt={w.imageSmallAlt} loading="lazy" decoding="async" width={500} height={500} className="col-span-3 aspect-[4/3] w-full rounded-3xl object-cover will-change-transform" style={drift(50)} />
         </Reveal>
 
         {/* Text + stat tiles */}
-        <Reveal delay={150}>
+        <Reveal delay={150} variant="right">
           <Chip>{w.eyebrow}</Chip>
           <h2 className="mt-4 text-3xl leading-tight sm:text-4xl">{w.title}</h2>
           <p className="mt-4 text-slate-600">{w.text}</p>
@@ -171,7 +186,7 @@ function WhoWeAre() {
             <div className="rounded-3xl bg-cream p-6">
               <Stars />
               <p className="mt-4 text-4xl font-extrabold text-ink">
-                {stats.reviewCount ? stats.avgRating.toFixed(1) : '—'}
+                {stats.reviewCount ? <CountUp value={stats.avgRating} decimals={1} /> : '—'}
                 <span className="text-base font-medium text-slate-600">/5.0</span>
               </p>
               <p className="mt-3 text-sm font-medium text-ink">Avg. client rating</p>
@@ -241,7 +256,7 @@ function Why() {
           {home.why.map((w, i) => {
             const Icon = whyIcons[i] ?? CheckCircle2
             return (
-              <Reveal key={w.title} delay={i * 120} className="rounded-3xl bg-white p-7 hover:-translate-y-1 hover:shadow-lg">
+              <Reveal key={w.title} delay={i * 120} variant="zoom" className="rounded-3xl bg-white p-7 hover:-translate-y-1 hover:shadow-lg">
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-900 text-accent-400">
                   <Icon className="h-6 w-6" aria-hidden="true" />
                 </span>
@@ -265,6 +280,7 @@ export default function Home() {
       <Hero />
       <Approach />
       <WhoWeAre />
+      <ScrollMarquee items={home.marquee} />
       <Services />
       <Why />
 

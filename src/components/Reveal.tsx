@@ -5,11 +5,14 @@ export function Reveal({
   children,
   delay = 0,
   as: Tag = 'div',
+  variant = 'up',
   className = '',
 }: {
   children: ReactNode
   delay?: number
   as?: ElementType
+  /** Direction the element animates in from. */
+  variant?: 'up' | 'left' | 'right' | 'zoom'
   className?: string
 }) {
   const ref = useRef<HTMLElement>(null)
@@ -35,7 +38,7 @@ export function Reveal({
   return (
     <Tag
       ref={ref}
-      className={`reveal ${visible ? 'is-visible' : ''} ${className}`}
+      className={`reveal ${variant !== 'up' ? `reveal-${variant}` : ''} ${visible ? 'is-visible' : ''} ${className}`}
       style={delay ? ({ '--reveal-delay': `${delay}ms` } as React.CSSProperties) : undefined}
     >
       {children}

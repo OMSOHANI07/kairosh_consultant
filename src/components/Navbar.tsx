@@ -7,6 +7,7 @@ import { services } from '../content/services'
 import { useCustomer } from '../lib/customer'
 import { PillLink } from './CtaLink'
 import { Logo } from './Logo'
+import { ScrollProgressBar } from './ScrollEffects'
 import { GithubIcon, InstagramIcon, LinkedinIcon, XIcon } from './SocialIcons'
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
@@ -180,6 +181,7 @@ export function Navbar() {
           </div>
         )}
       </div>
+      <ScrollProgressBar />
     </header>
   )
 }

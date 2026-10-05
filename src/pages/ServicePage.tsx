@@ -8,6 +8,8 @@ import { Reveal } from '../components/Reveal'
 import { TestimonialGrid } from '../components/Testimonials'
 import { services, type Category } from '../content/services'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { useScrollProgress } from '../lib/scroll'
+import { useRef } from 'react'
 
 const heroImage: Record<Category, string> = {
   website: '/images/team-laptops.webp',
@@ -18,6 +20,8 @@ const heroImage: Record<Category, string> = {
 export default function ServicePage({ category }: { category: Category }) {
   const s = services[category]
   usePageMeta({ path: s.path })
+  const processRef = useRef<HTMLDivElement>(null)
+  useScrollProgress(processRef)
 
   return (
     <>
@@ -41,6 +45,7 @@ export default function ServicePage({ category }: { category: Category }) {
               <Reveal
                 key={o.title}
                 delay={(i % 3) * 120}
+                variant={(['left', 'up', 'right'] as const)[i % 3]}
                 className={`rounded-3xl p-7 transition-transform hover:-translate-y-1 ${i === 1 ? 'bg-accent-400' : i === 2 ? 'bg-brand-900' : 'bg-white'}`}
               >
                 <CheckCircle2 className={`h-7 w-7 ${i === 2 ? 'text-accent-400' : 'text-ink'}`} aria-hidden="true" />
@@ -52,9 +57,17 @@ export default function ServicePage({ category }: { category: Category }) {
             ))}
           </div>
 
-          <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div ref={processRef} className="relative mt-12">
+          {/* Progress line that fills as the steps scroll through the viewport */}
+          <div className="absolute right-6 -bottom-6 left-6 hidden h-1.5 rounded-full bg-white lg:block" aria-hidden="true">
+            <div
+              className="h-full origin-left rounded-full bg-accent-500"
+              style={{ transform: 'scaleX(clamp(0, calc(var(--p, 1) * 2.2 - 0.6), 1))' }}
+            />
+          </div>
+          <ol className="relative grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {s.process.map((step, i) => (
-              <Reveal as="li" key={step} delay={i * 120} className="flex items-center gap-4 rounded-full bg-white p-2 pr-6">
+              <Reveal as="li" key={step} delay={i * 120} variant="zoom" className="flex items-center gap-4 rounded-full bg-white p-2 pr-6 shadow-sm">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-900 font-bold text-accent-400">
                   {String(i + 1).padStart(2, '0')}
                 </span>
@@ -62,6 +75,7 @@ export default function ServicePage({ category }: { category: Category }) {
               </Reveal>
             ))}
           </ol>
+          </div>
         </div>
       </section>
 
