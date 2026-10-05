@@ -77,14 +77,99 @@
   @apply animate-pulse rounded-md bg-slate-200;
 }
 
+
+/* =============================================================================
+   Animations (illustrations + scroll reveal). All are disabled by the
+   prefers-reduced-motion rule at the bottom of this file.
+   ============================================================================= */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes float-tilt {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+@keyframes build-in {
+  0%, 8% { opacity: 0; transform: translateY(10px) scale(0.96); }
+  18%, 82% { opacity: 1; transform: none; }
+  92%, 100% { opacity: 0; transform: translateY(-4px); }
+}
+@keyframes grow-x {
+  0%, 10% { transform: scaleX(0); }
+  30%, 85% { transform: scaleX(1); }
+  95%, 100% { transform: scaleX(0); }
+}
+@keyframes cursor-path {
+  0%, 15% { transform: translate(120%, 160%); }
+  40% { transform: translate(0, 0); }
+  44% { transform: translate(0, 0) scale(0.85); }
+  48%, 70% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(120%, 160%); }
+}
+@keyframes click-ring {
+  0%, 42% { opacity: 0; transform: scale(0.4); }
+  46% { opacity: 1; }
+  60%, 100% { opacity: 0; transform: scale(1.8); }
+}
+@keyframes pulse-ring {
+  0% { opacity: 0.55; transform: scale(0.8); }
+  100% { opacity: 0; transform: scale(1.9); }
+}
+@keyframes dash-flow {
+  to { stroke-dashoffset: -40; }
+}
+@keyframes toast {
+  0%, 20% { opacity: 0; transform: translateY(12px); }
+  28%, 70% { opacity: 1; transform: none; }
+  78%, 100% { opacity: 0; transform: translateY(-8px); }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@utility animate-float { animation: float 5s ease-in-out infinite; }
+@utility animate-float-slow { animation: float 7s ease-in-out infinite; }
+@utility animate-float-tilt { animation: float-tilt 6s ease-in-out infinite; }
+@utility animate-build { animation: build-in 7s ease-in-out infinite both; }
+@utility animate-grow-x { animation: grow-x 7s ease-in-out infinite both; transform-origin: left; }
+@utility animate-cursor { animation: cursor-path 7s ease-in-out infinite; }
+@utility animate-click { animation: click-ring 7s ease-out infinite; }
+@utility animate-pulse-ring { animation: pulse-ring 2.6s ease-out infinite; }
+@utility animate-dash { animation: dash-flow 1.6s linear infinite; }
+@utility animate-toast { animation: toast 6s ease-in-out infinite both; }
+@utility animate-spin-slow { animation: spin-slow 18s linear infinite; }
+@utility animate-blink { animation: blink 1s step-end infinite; }
+
+/* Scroll reveal: <Reveal> adds .is-visible when the element enters the viewport */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
+    animation: none !important;
     transition-duration: 0.01ms !important;
   }
 }

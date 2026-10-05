@@ -1,7 +1,10 @@
 import { CheckCircle2 } from 'lucide-react'
 import { CtaBanner, PageHero, SectionHeading } from '../components/CtaBanner'
 import { PillLink } from '../components/CtaLink'
+import { AiIllustration } from '../components/illustrations/AiIllustration'
+import { WebsiteIllustration } from '../components/illustrations/WebsiteIllustration'
 import { PortfolioGrid } from '../components/Portfolio'
+import { Reveal } from '../components/Reveal'
 import { TestimonialGrid } from '../components/Testimonials'
 import { services, type Category } from '../content/services'
 import { usePageMeta } from '../hooks/usePageMeta'
@@ -18,7 +21,13 @@ export default function ServicePage({ category }: { category: Category }) {
 
   return (
     <>
-      <PageHero eyebrow={s.eyebrow} title={s.title} text={s.intro} image={heroImage[category]}>
+      <PageHero
+        eyebrow={s.eyebrow}
+        title={s.title}
+        text={s.intro}
+        image={heroImage[category]}
+        aside={category === 'website' ? <WebsiteIllustration /> : <AiIllustration />}
+      >
         <PillLink to="/contact" track={`${category}-hero`} className="mt-9 py-2 pl-6 text-base">
           Book a Free Consultation
         </PillLink>
@@ -29,27 +38,28 @@ export default function ServicePage({ category }: { category: Category }) {
           <SectionHeading eyebrow="What we offer" title="How we can help" align="split" intro={s.ctaText} />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {s.offerings.map((o, i) => (
-              <div
+              <Reveal
                 key={o.title}
-                className={`rounded-3xl p-7 ${i === 1 ? 'bg-accent-400' : i === 2 ? 'bg-brand-900' : 'bg-white'}`}
+                delay={(i % 3) * 120}
+                className={`rounded-3xl p-7 transition-transform hover:-translate-y-1 ${i === 1 ? 'bg-accent-400' : i === 2 ? 'bg-brand-900' : 'bg-white'}`}
               >
                 <CheckCircle2 className={`h-7 w-7 ${i === 2 ? 'text-accent-400' : 'text-ink'}`} aria-hidden="true" />
                 <h3 className={`mt-5 text-lg ${i === 2 ? 'text-white' : ''}`}>{o.title}</h3>
                 <p className={`mt-2 text-sm ${i === 2 ? 'text-brand-100' : i === 1 ? 'text-ink/75' : 'text-slate-600'}`}>
                   {o.description}
                 </p>
-              </div>
+              </Reveal>
             ))}
           </div>
 
           <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {s.process.map((step, i) => (
-              <li key={step} className="flex items-center gap-4 rounded-full bg-white p-2 pr-6">
+              <Reveal as="li" key={step} delay={i * 120} className="flex items-center gap-4 rounded-full bg-white p-2 pr-6">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-900 font-bold text-accent-400">
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <span className="font-semibold text-ink">{step}</span>
-              </li>
+              </Reveal>
             ))}
           </ol>
         </div>

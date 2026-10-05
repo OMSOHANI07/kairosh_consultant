@@ -2,6 +2,9 @@ import { BadgeCheck, Bot, CheckCircle2, Clock, Handshake, IndianRupee, LifeBuoy,
 import { ContactForm } from '../components/ContactForm'
 import { Chip, SectionHeading } from '../components/CtaBanner'
 import { PillLink } from '../components/CtaLink'
+import { AiIllustration } from '../components/illustrations/AiIllustration'
+import { WebsiteIllustration } from '../components/illustrations/WebsiteIllustration'
+import { Reveal } from '../components/Reveal'
 import { TestimonialCarousel } from '../components/Testimonials'
 import { site } from '../config/site'
 import { about } from '../content/about'
@@ -101,7 +104,7 @@ function Approach() {
             const s = cardStyles[i % cardStyles.length]
             const Icon = approachIcons[c.icon as keyof typeof approachIcons] ?? CheckCircle2
             return (
-              <article key={c.title} className={`relative overflow-hidden rounded-3xl p-8 pb-24 ${s.card}`}>
+              <Reveal as="article" key={c.title} delay={i * 140} className={`relative overflow-hidden rounded-3xl p-8 pb-24 ${s.card}`}>
                 {i === 1 && <div className="pointer-events-none absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-accent-500/60" aria-hidden="true" />}
                 <Icon className={`h-10 w-10 ${s.icon}`} strokeWidth={1.5} aria-hidden="true" />
                 <h3 className={`mt-8 text-xl ${s.title}`}>{c.title}</h3>
@@ -112,7 +115,7 @@ function Approach() {
                     Explore More<span className="sr-only">: {c.title}</span>
                   </PillLink>
                 </div>
-              </article>
+              </Reveal>
             )
           })}
         </div>
@@ -129,7 +132,7 @@ function WhoWeAre() {
     <section className="py-20 sm:py-24">
       <div className="container-page grid items-center gap-12 lg:grid-cols-2">
         {/* Photo collage */}
-        <div className="grid grid-cols-5 gap-4">
+        <Reveal className="grid grid-cols-5 gap-4">
           <img src={w.imageMain} alt={w.imageMainAlt} loading="lazy" decoding="async" width={900} height={560} className="col-span-5 aspect-[16/10] w-full rounded-3xl object-cover" />
           <div className="col-span-2 flex flex-col items-center justify-center rounded-3xl bg-accent-400 p-5 text-center text-ink">
             <CheckCircle2 className="h-9 w-9 fill-ink text-accent-400" aria-hidden="true" />
@@ -137,10 +140,10 @@ function WhoWeAre() {
             <p className="mt-1 text-sm font-medium">Projects in our portfolio</p>
           </div>
           <img src={w.imageSmall} alt={w.imageSmallAlt} loading="lazy" decoding="async" width={500} height={500} className="col-span-3 aspect-[4/3] w-full rounded-3xl object-cover" />
-        </div>
+        </Reveal>
 
         {/* Text + stat tiles */}
-        <div>
+        <Reveal delay={150}>
           <Chip>{w.eyebrow}</Chip>
           <h2 className="mt-4 text-3xl leading-tight sm:text-4xl">{w.title}</h2>
           <p className="mt-4 text-slate-600">{w.text}</p>
@@ -184,7 +187,7 @@ function WhoWeAre() {
               </ul>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -192,16 +195,19 @@ function WhoWeAre() {
 
 function Services() {
   const items = [
-    { s: services.website, Icon: MonitorSmartphone },
-    { s: services.ai, Icon: Bot },
+    { s: services.website, Icon: MonitorSmartphone, Art: WebsiteIllustration },
+    { s: services.ai, Icon: Bot, Art: AiIllustration },
   ]
   return (
     <section id="services" className="scroll-mt-24 bg-brand-950 py-20 sm:py-24">
       <div className="container-page">
         <SectionHeading eyebrow={home.servicesEyebrow} title={home.servicesTitle} align="split" dark />
         <div className="grid gap-6 lg:grid-cols-2">
-          {items.map(({ s, Icon }) => (
-            <article key={s.path} className="flex flex-col rounded-3xl bg-white/5 p-8 ring-1 ring-white/10">
+          {items.map(({ s, Icon, Art }, i) => (
+            <Reveal as="article" key={s.path} delay={i * 150} className="flex flex-col rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 sm:p-8">
+              <div className="mb-6 rounded-2xl bg-gradient-to-br from-brand-800/80 to-brand-950 p-4 sm:p-6">
+                <Art />
+              </div>
               <div className="flex items-center gap-4">
                 <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent-400 text-ink">
                   <Icon className="h-7 w-7" aria-hidden="true" />
@@ -218,7 +224,7 @@ function Services() {
               <PillLink to={s.path} className="mt-8 self-start">
                 Learn more<span className="sr-only"> about {s.navLabel}</span>
               </PillLink>
-            </article>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -235,13 +241,13 @@ function Why() {
           {home.why.map((w, i) => {
             const Icon = whyIcons[i] ?? CheckCircle2
             return (
-              <div key={w.title} className="rounded-3xl bg-white p-7 transition hover:-translate-y-1 hover:shadow-lg">
+              <Reveal key={w.title} delay={i * 120} className="rounded-3xl bg-white p-7 hover:-translate-y-1 hover:shadow-lg">
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-900 text-accent-400">
                   <Icon className="h-6 w-6" aria-hidden="true" />
                 </span>
                 <h3 className="mt-6 text-lg">{w.title}</h3>
                 <p className="mt-2 text-sm text-slate-600">{w.description}</p>
-              </div>
+              </Reveal>
             )
           })}
         </div>

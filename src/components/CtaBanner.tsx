@@ -1,5 +1,6 @@
 import { Asterisk } from 'lucide-react'
 import { PillLink } from './CtaLink'
+import { Reveal } from './Reveal'
 
 export function CtaBanner({ title, text, location }: { title: string; text: string; location: string }) {
   return (
@@ -42,21 +43,21 @@ export function SectionHeading({
 }) {
   if (align === 'split') {
     return (
-      <div className="mb-12 grid gap-6 lg:grid-cols-2 lg:items-end">
+      <Reveal className="mb-12 grid gap-6 lg:grid-cols-2 lg:items-end">
         <div>
           {eyebrow && <Chip dark={dark}>{eyebrow}</Chip>}
           <h2 className={`mt-4 text-3xl leading-tight sm:text-4xl ${dark ? 'text-white' : ''}`}>{title}</h2>
         </div>
         {intro && <p className={`max-w-md lg:justify-self-end ${dark ? 'text-brand-100' : 'text-slate-600'}`}>{intro}</p>}
-      </div>
+      </Reveal>
     )
   }
   return (
-    <div className="mx-auto mb-12 max-w-2xl text-center">
+    <Reveal className="mx-auto mb-12 max-w-2xl text-center">
       {eyebrow && <Chip dark={dark}>{eyebrow}</Chip>}
       <h2 className={`mt-4 text-3xl leading-tight sm:text-4xl ${dark ? 'text-white' : ''}`}>{title}</h2>
       {intro && <p className={`mt-3 ${dark ? 'text-brand-100' : 'text-slate-600'}`}>{intro}</p>}
-    </div>
+    </Reveal>
   )
 }
 
@@ -66,12 +67,15 @@ export function PageHero({
   title,
   text,
   image,
+  aside,
   children,
 }: {
   eyebrow: string
   title: string
   text?: string
   image?: string
+  /** Optional illustration shown to the right of the text. */
+  aside?: React.ReactNode
   children?: React.ReactNode
 }) {
   return (
@@ -80,11 +84,14 @@ export function PageHero({
         <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover opacity-25" decoding="async" fetchPriority="high" />
       )}
       <div className="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-950/90 to-brand-950/40" aria-hidden="true" />
-      <div className="container-page relative py-16 sm:py-24">
-        <Chip dark>{eyebrow}</Chip>
-        <h1 className="mt-5 max-w-3xl text-4xl leading-tight text-white uppercase sm:text-5xl">{title}</h1>
-        {text && <p className="mt-5 max-w-2xl text-lg text-brand-100">{text}</p>}
-        {children}
+      <div className={`container-page relative py-16 sm:py-24 ${aside ? 'grid items-center gap-12 lg:grid-cols-2' : ''}`}>
+        <div>
+          <Chip dark>{eyebrow}</Chip>
+          <h1 className="mt-5 max-w-3xl text-4xl leading-tight text-white uppercase sm:text-5xl">{title}</h1>
+          {text && <p className="mt-5 max-w-2xl text-lg text-brand-100">{text}</p>}
+          {children}
+        </div>
+        {aside && <div className="mx-auto w-full max-w-xl">{aside}</div>}
       </div>
     </section>
   )
