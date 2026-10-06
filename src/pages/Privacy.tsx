@@ -24,7 +24,7 @@ export default function Privacy() {
       <p className="mt-6 text-slate-600">
         This policy explains what personal data {site.name} (“we”, “us”) collects through {site.url}, why we collect it,
         and the choices you have. We process personal data in line with India’s Digital Personal Data Protection Act,
-        2023 (“DPDP Act”). <strong>PLACEHOLDER: have this policy reviewed by a legal professional before launch.</strong>
+        2023 (“DPDP Act”).
       </p>
 
       <Section title="1. Data we collect">
@@ -69,7 +69,7 @@ export default function Privacy() {
       <Section title="5. How long we keep it">
         <p>
           Enquiries and customer records are kept for as long as needed to serve you and for up to 3 years after our
-          last contact. Analytics data is kept for up to 24 months. <strong>PLACEHOLDER: adjust these periods to your practice.</strong>
+          last contact. Analytics data is kept for up to 24 months.
         </p>
       </Section>
 

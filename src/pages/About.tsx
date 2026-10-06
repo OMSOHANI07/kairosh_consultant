@@ -1,16 +1,12 @@
-import { UserRound } from 'lucide-react'
 import { Chip, CtaBanner, PageHero, SectionHeading } from '../components/CtaBanner'
 import { LinkedinIcon } from '../components/SocialIcons'
 import { about } from '../content/about'
 import { usePageMeta } from '../hooks/usePageMeta'
 
+/** Shows the image if one is set in src/content/about.ts; otherwise nothing. */
 function Photo({ src, alt, className }: { src?: string; alt: string; className: string }) {
-  if (src) return <img src={src} alt={alt} loading="lazy" decoding="async" className={`${className} object-cover`} />
-  return (
-    <div className={`${className} flex items-center justify-center bg-gradient-to-br from-brand-900 to-brand-700 text-accent-400/60`} role="img" aria-label={`${alt} (placeholder)`}>
-      <UserRound className="h-1/3 w-1/3" aria-hidden="true" />
-    </div>
-  )
+  if (!src) return null
+  return <img src={src} alt={alt} loading="lazy" decoding="async" className={`${className} object-cover`} />
 }
 
 export default function About() {
@@ -22,7 +18,7 @@ export default function About() {
       <PageHero eyebrow="About Us" title={hero.title} text={hero.subtitle} image="/images/meeting.webp" />
 
       <section className="py-20">
-        <div className="container-page grid items-center gap-12 md:grid-cols-2">
+        <div className={`container-page grid items-center gap-12 ${founderStory.photoUrl ? 'md:grid-cols-2' : 'max-w-3xl'}`}>
           <Photo src={founderStory.photoUrl} alt={founderStory.photoAlt} className="aspect-[4/5] w-full rounded-3xl" />
           <div>
             <Chip>Our Story</Chip>
@@ -60,7 +56,7 @@ export default function About() {
             }`}
           >
             {team.members.map((m, i) => (
-              <div key={i} className="overflow-hidden rounded-3xl bg-cream">
+              <div key={i} className={`overflow-hidden rounded-3xl bg-cream ${m.photoUrl ? '' : 'border-t-4 border-accent-400'}`}>
                 <Photo src={m.photoUrl} alt={m.name} className="aspect-square w-full" />
                 <div className="p-6">
                   <h3 className="text-lg">{m.name}</h3>
